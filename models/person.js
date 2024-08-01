@@ -3,13 +3,15 @@ const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", false);
 
-const url =
-  "mongodb+srv://eduardo:$eduardo@exercise3-12.5icolsv.mongodb.net/phonebook?retryWrites=true&w=majority&appName=exercise3-12";
+const url = process.env.MONGODB_URI;
 
 console.log("connecting to", url);
 
 mongoose
-  .connect(url)
+  .connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((result) => {
     console.log("connected to MongoDB");
   })
