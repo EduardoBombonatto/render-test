@@ -18,8 +18,8 @@ const persons = [
 ];
 
 app.get("/api/persons", (request, response) => {
-  Person.find({}).then((notes) => {
-    response.json(notes);
+  Person.find({}).then((persons) => {
+    response.json(persons);
   });
 });
 
@@ -51,7 +51,7 @@ app.delete("api/persons/:id", (request, response) => {
 });
 
 const generateId = () => {
-  const maxId = notes.length > 0 ? Math.max(...notes.map((n) => n.id)) : 0;
+  const maxId = persons.length > 0 ? Math.max(...persons.map((n) => n.id)) : 0;
   return maxId + 1;
 };
 
@@ -80,7 +80,7 @@ app.post("api/persons", (request, response) => {
   res.json(newPerson);
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
