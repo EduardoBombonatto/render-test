@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", false);
 
-const url = process.env.MONGODB_URI;
+const url =
+  "mongodb+srv://eduardo:$eduardo@exercise3-12.5icolsv.mongodb.net/phonebook?retryWrites=true&w=majority&appName=exercise3-12";
 
 console.log("connecting to", url);
 
