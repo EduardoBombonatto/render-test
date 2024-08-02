@@ -44,16 +44,13 @@ app.get("/api/persons/:id", (request, response) => {
 });
 
 app.delete("/api/persons/:id", (request, response) => {
-  const id = request.params.id;
-  persons = persons.filter((person) => person.id !== id);
-
-  response.status(204).end();
+  Person.findByIdAndDelete(request.params.id).then((result) => {
+    result
+      ? res.status(204).end()
+      : res.status(404).send({ error: "entry not found" });
+  });
 });
 
-const generateId = () => {
-  const maxId = persons.length > 0 ? Math.max(...persons.map((n) => n.id)) : 0;
-  return maxId + 1;
-};
 
 app.post("/api/persons", (request, response) => {
   const body = request.body;
